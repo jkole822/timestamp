@@ -58,7 +58,7 @@ app.get('/api/timestamp/:date_string', (req, res) => {
 
 		res.send(timestamp);
 	} catch (e) {
-		res.status(400).send({ error: 'Invalid Date' });
+		res.status(400).json({ error: 'Invalid Date' });
 	}
 });
 
