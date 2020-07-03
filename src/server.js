@@ -1,17 +1,16 @@
 const express = require('express');
 const path = require('path');
-// const cors = require('cors');
+const cors = require('cors');
 const Timestamp = require('./models/timestamp');
 
 const app = express();
 
-// app.use(cors({ optionSuccessStatus: 200 }));
+app.use(cors({ optionSuccessStatus: 200 }));
 
 const publicDirectoryPath = path.join(__dirname, '../public');
 const fccIndexPath = path.join(__dirname, '../views/index.html');
 
 app.use(express.static(publicDirectoryPath));
-const port = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
 	res.sendFile(fccIndexPath);
@@ -62,10 +61,10 @@ app.get('/api/timestamp/:date_string', (req, res) => {
 	}
 });
 
-// var listener = app.listen(process.env.PORT, function () {
-// 	console.log('Your app is listening on port ' + listener.address().port);
-// });
+var listener = app.listen(process.env.PORT, function () {
+	console.log('Your app is listening on port ' + listener.address().port);
+});
 
-app.listen(port, () => {
-	console.log('Server is up on port ' + port);
+app.listen(3000, () => {
+	console.log('Server is up on port 3000');
 });
