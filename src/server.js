@@ -4,6 +4,7 @@ const cors = require('cors');
 const Timestamp = require('./models/timestamp');
 
 const app = express();
+const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
 const fccIndexPath = path.join(__dirname, '../views/index.html');
 
