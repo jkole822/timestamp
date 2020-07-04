@@ -4,11 +4,10 @@ const cors = require('cors');
 const Timestamp = require('./models/timestamp');
 
 const app = express();
-
-app.use(cors({ optionSuccessStatus: 200 }));
-
 const publicDirectoryPath = path.join(__dirname, '../public');
 const fccIndexPath = path.join(__dirname, '../views/index.html');
+
+app.use(cors({ optionSuccessStatus: 200 }));
 
 app.use(express.static(publicDirectoryPath));
 
@@ -17,8 +16,6 @@ app.get('/', function (req, res) {
 });
 
 Date.prototype.isValid = function () {
-	// An invalid date object returns NaN for getTime() and NaN is the only
-	// object not strictly equal to itself.
 	return this.getTime() === this.getTime();
 };
 
@@ -61,10 +58,6 @@ app.get('/api/timestamp/:date_string', (req, res) => {
 	}
 });
 
-var listener = app.listen(process.env.PORT, function () {
-	console.log('Your app is listening on port ' + listener.address().port);
-});
-
-app.listen(3000, () => {
-	console.log('Server is up on port 3000');
+app.listen(port, () => {
+	console.log('Your app is listening on port ' + port);
 });
